@@ -16,6 +16,7 @@ export default class RealTimeResult extends React.Component {
 
   render() {
     const {currentRoundInfo, currentRoundTimeLeft} = this.props;
+
     // time of the round
     const duration = moment.duration(currentRoundTimeLeft);
 
@@ -40,6 +41,10 @@ export default class RealTimeResult extends React.Component {
       blueScore = currentRoundInfo.blue.total;
       blueAutoScore = currentRoundInfo.blue.auto;
       blueManualScore = currentRoundInfo.blue.manual;
+
+      if (this.win !== undefined) {
+        if (currentRoundInfo.winner !== '') this.win.play();
+      }
     }
 
     return (
@@ -54,6 +59,12 @@ export default class RealTimeResult extends React.Component {
           this.timeout = sound;
         }}>
           <source src={require('../../assets/sounds/timeout.mp3')} type="audio/mpeg">
+          </source>
+        </audio>
+        <audio ref={(sound) => {
+          this.win = sound;
+        }}>
+          <source src={require('../../assets/sounds/win.mp3')} type="audio/mpeg">
           </source>
         </audio>
         <Row>

@@ -33,7 +33,9 @@ class AppModelType extends EventEmitter{
     }
 
     public checkWin() {
-        return this.dataRed.isWin() || this.dataBlue.isWin();
+        if (this.dataRed.isWin()) return 'R';
+        if (this.dataBlue.isWin()) return 'B';
+        return '';
     }
 
     private initData = () => {

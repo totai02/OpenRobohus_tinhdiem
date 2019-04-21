@@ -6,7 +6,7 @@ import {AppCmd} from "../cmd/AppCmd";
 import {SocketEvent} from "../event/Event";
 import {App} from "../const/App";
 
-export class AppService{
+export class AppService {
     static readonly Connect = "connection";
 
     public app: Express.Application;
@@ -46,12 +46,13 @@ export class AppService{
                 if (data.value === '5') AppModel.dataRed.addFivePoint();
                 if (data.value === '10') AppModel.dataRed.addTenPoint();
             }
-            if (AppModel.checkWin()) {
-                clearInterval(AppModel.currentTimerInterval);
+            let winner = AppModel.checkWin();
+            if (winner !== '') {
 
+                clearInterval(AppModel.currentTimerInterval);
                 AppModel.stop();
             }
-            this.dispatchCurrentRoundInfoToFrontend();
+            this.dispatchCurrentRoundInfoToFrontend(winner);
         }
     };
 
@@ -84,6 +85,10 @@ export class AppService{
 
                 AppModel.stop();
 
+                let winner = AppModel.dataBlue.getTotalScore() > AppModel.dataRed.getTotalScore() ? 'G' : 'R';
+
+                this.dispatchCurrentRoundInfoToFrontend(winner);
+
             } else {
                 AppModel.timeLeftInMillis -= 1000;
                 this.io.emit(AppCmd.RemoteDispatch, {
@@ -111,7 +116,7 @@ export class AppService{
         this.dispatchCurrentRoundInfoToFrontend();
     };
 
-    private dispatchCurrentRoundInfoToFrontend = () => {
+    private dispatchCurrentRoundInfoToFrontend = (winner = '') => {
         this.io.emit(AppCmd.RemoteDispatch, {
             type: 'CHANGE_ROUND',
             data: {
@@ -124,7 +129,8 @@ export class AppService{
                     total: AppModel.dataBlue.getTotalScore(),
                     auto: AppModel.dataBlue.getAutoScore(),
                     manual: AppModel.dataBlue.getManualScore()
-                }
+                },
+                winner: winner
             },
         });
     };

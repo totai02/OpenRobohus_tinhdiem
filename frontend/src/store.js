@@ -16,24 +16,15 @@ import update from 'react-addons-update';
 const initialState = {
   main: {
     currentRoundTimeLeft: 0,
+    playerWin: ''
   },
   admin: {
   },
 };
 
 const store = createStore((state = initialState, action) => {
-  let newState;
 
   switch (action.type) {
-    case 'INIT_DATA':
-      newState = update(state, {
-        main: { $merge: action.data },
-        admin: { $merge: action.data },
-      });
-      newState = update(newState, {
-        admin: { selectedRound: { $set: action.data.currentRoundInfo._id } },
-      });
-      return newState;
     case 'CHANGE_ROUND':
       return update(state, {
         main: { currentRoundInfo: { $set: action.data } },
