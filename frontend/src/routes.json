@@ -1,0 +1,22 @@
+[
+  {
+    "path": "/",
+    "page": "./home",
+    "chunk": "main"
+  },
+  {
+    "path": "/blue",
+    "page": "./admin/blue",
+    "chunk": "main"
+  },
+  {
+    "path": "/red",
+    "page": "./admin/red",
+    "chunk": "main"
+  },
+  {
+    "path": "/error",
+    "page": "./error",
+    "chunk": "main"
+  }
+]
