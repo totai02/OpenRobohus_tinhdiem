@@ -41,12 +41,12 @@ class AdminPage extends React.Component {
         <Row style={{marginTop: '4rem'}}>
           <Col xs={6}>
             <ButtonToolbar style={{marginTop: 10}}>
-              <Button style={{width: '100%', height: '10rem', fontSize: '5rem'}} bsStyle="success" id="2" onClick={this.updateScore}>+2</Button>
+              <Button style={{width: '100%', height: '10rem', fontSize: '5rem'}} bsStyle="danger" id="2" onClick={this.updateScore}>+2</Button>
             </ButtonToolbar>
           </Col>
           <Col xs={6}>
             <ButtonToolbar style={{marginTop: 10}}>
-              <Button style={{width: '100%', height: '10rem', fontSize: '5rem'}} bsStyle="success" id="3" onClick={this.updateScore}>+3</Button>
+              <Button style={{width: '100%', height: '10rem', fontSize: '5rem'}} bsStyle="danger" id="3" onClick={this.updateScore}>+3</Button>
             </ButtonToolbar>
           </Col>
         </Row>
@@ -54,12 +54,12 @@ class AdminPage extends React.Component {
         <Row>
           <Col xs={6}>
             <ButtonToolbar style={{marginTop: 10}}>
-              <Button style={{width: '100%', height: '10rem', fontSize: '5rem'}} bsStyle="success" id="5" onClick={this.updateScore}>+5</Button>
+              <Button style={{width: '100%', height: '10rem', fontSize: '5rem'}} bsStyle="danger" id="5" onClick={this.updateScore}>+5</Button>
             </ButtonToolbar>
           </Col>
           <Col xs={6}>
             <ButtonToolbar style={{marginTop: 10}}>
-              <Button style={{width: '100%', height: '10rem', fontSize: '5rem'}} bsStyle="success" id="10" onClick={this.updateScore}>+10</Button>
+              <Button style={{width: '100%', height: '10rem', fontSize: '5rem'}} bsStyle="danger" id="10" onClick={this.updateScore}>+10</Button>
             </ButtonToolbar>
           </Col>
         </Row>
