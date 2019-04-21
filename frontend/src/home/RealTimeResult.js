@@ -31,7 +31,7 @@ export default class RealTimeResult extends React.Component {
     const timer = `${this.zeroFill(duration.minutes(), 2)}:${this.zeroFill(duration.seconds(), 2)}`;
 
     let redScore = 0, redAutoScore = 0, redManualScore = 0, blueScore = 0, blueAutoScore = 0, blueManualScore = 0;
-
+    let redWin = false, blueWin = false;
 
     if (currentRoundInfo !== undefined) {
       redScore = currentRoundInfo.red.total;
@@ -43,7 +43,18 @@ export default class RealTimeResult extends React.Component {
       blueManualScore = currentRoundInfo.blue.manual;
 
       if (this.win !== undefined) {
-        if (currentRoundInfo.winner !== '') this.win.play();
+        if (currentRoundInfo.winner !== '') {
+          if (currentRoundInfo.winner === 'R') {
+            redWin = true;
+          }
+
+          if (currentRoundInfo.winner === 'B') {
+            blueWin = true;
+          }
+
+          this.win.play();
+          currentRoundInfo.winner = '';
+        }
       }
     }
 
@@ -68,7 +79,7 @@ export default class RealTimeResult extends React.Component {
           </source>
         </audio>
         <Row>
-          <Col style={{textAlign: 'center', marginTop: '-3rem'}}>
+          <Col style={{textAlign: 'center', marginTop: '-5rem'}}>
             <div style={{fontSize: '8rem'}}>
               <span style={{color: 'red', fontFamily: 'utmBebas'}}>OPEN</span>
               <span style={{color: 'blue', fontFamily: 'utmBebas'}}> ROBO</span>
@@ -97,15 +108,21 @@ export default class RealTimeResult extends React.Component {
               <div className={s.resultTitle}>TOTAL:
                 <span className={s.resultValue} style={{marginLeft: '1rem'}}>{redScore}</span>
               </div>
-              <div style={{backgroundColor: 'rgba(0, 0, 0,0.5)', width: '30rem', height: '20rem', marginTop: '1rem'}}/>
+              <div style={{backgroundColor: 'rgba(0, 0, 0,0.5)', width: '35rem', height: '25rem', marginTop: '1rem'}}/>
             </div>
           </Col>
           <Col xs={4}>
-            <Well className={s.timer}>
-              <strong>
-                {timer}
-              </strong>
-            </Well>
+            <Row>
+              <Well className={s.timer}>
+                <strong>
+                  {timer}
+                </strong>
+              </Well>
+            </Row>
+            <Row>
+              {redWin ? <img src={require('../../assets/images/red_win.png')} style={{marginLeft: '2rem', width: '80%' }} alt="footer" className="block-center" /> : undefined}
+              {blueWin ? <img src={require('../../assets/images/blue_win.png')} style={{ marginLeft: '2rem', width: '80%' }} alt="footer" className="block-center" /> : undefined}
+            </Row>
           </Col>
           <Col xs={4}>
             <div style={{marginLeft: '3rem'}}>
@@ -119,7 +136,7 @@ export default class RealTimeResult extends React.Component {
               <div className={s.resultTitle}>TOTAL:
                 <span className={s.resultValue} style={{marginLeft: '1rem'}}>{blueScore}</span>
               </div>
-              <div style={{backgroundColor: 'rgba(0, 0, 0,0.5)', width: '30rem', height: '20rem', marginTop: '1rem'}}/>
+              <div style={{backgroundColor: 'rgba(0, 0, 0,0.5)', width: '35rem', height: '25rem', marginTop: '1rem'}}/>
             </div>
           </Col>
         </Row>

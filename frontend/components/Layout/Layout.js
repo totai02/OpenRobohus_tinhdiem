@@ -36,13 +36,13 @@ class Layout extends React.Component {
         <Grid>
           <Row style={{ marginTop: '2rem'}}>
             <Col xs={9}>
-              <img src={require('../../assets/images/hus-logo.jpg')} style={{ height: '9rem' }} alt="footer" className="block-center" />
+              <img src={require('../../assets/images/hus_logo.png')} style={{ height: '12rem' }} alt="footer" className="block-center" />
             </Col>
             <Col xs={2}>
-              <img src={require('../../assets/images/khoa-logo.png')} style={{ height: '6rem' }} alt="footer" className="block-center" />
+              <img src={require('../../assets/images/khoa-logo.png')} style={{ height: '8rem' }} alt="footer" className="block-center" />
             </Col>
             <Col xs={1} >
-              <img src={require('../../assets/images/khoa-vatli-logo.png')} style={{ height: '6rem' }} alt="footer" className="block-center" />
+              <img src={require('../../assets/images/khoa-vatli-logo.png')} style={{ height: '8rem' }} alt="footer" className="block-center" />
             </Col>
           </Row>
         </Grid>
